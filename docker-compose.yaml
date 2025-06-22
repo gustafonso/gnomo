@@ -1,0 +1,35 @@
+version: "3.9"
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "4000:4000"
+    volumes:
+      - ./documents:/app/documents
+      - ./embeddings:/app/embeddings
+      - ./backend/users.json:/app/users.json
+      - ./backend/chats.json:/app/chats.json
+      - ./backend/logs.json:/app/logs.json
+    environment:
+      - OLLAMA_URL=http://host.docker.internal:11434
+      - NODE_OPTIONS=--max-old-space-size=8192
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+        reservations:
+          memory: 4G
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  documents:
+  embeddings:

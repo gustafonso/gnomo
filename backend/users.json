@@ -1,0 +1,7 @@
+{
+  "admin": {
+    "password": "admin",
+    "role": "admin",
+    "selectedModel": "llama3.2:latest"
+  }
+}
