@@ -1,6 +1,6 @@
 # GNOMO — IA Offline para Pentest
 
-GNOMO é um sistema de IA local, totalmente offline, focado em automação de pentest, segurança ofensiva e hacking ético.  
+GNOMO é um sistema de IA local, totalmente offline, focado em anonimização.
 Funciona com Docker e integra-se ao Ollama, permitindo escolher e executar modelos de IA localmente.  
 Não utiliza banco de dados — todo o armazenamento é feito em arquivos JSON simples.
 
@@ -152,7 +152,16 @@ https://ollama.com/library
 
 ---
 
-## 12. Licença
+## 12. Melhorias em andamento
+
+- Implementação de banco de dados
+- Suporte a múltiplos modelos de documentos (Não somente .md)
+- Análise de imagem e vídeo
+- Integração com visão computacional
+
+---
+
+## 13. Licença
 
 Este projeto é destinado a uso pessoal, laboratórios e ambientes controlados de testes de segurança.  
 Não deve ser utilizado para atividades não autorizadas.
