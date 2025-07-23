@@ -9,17 +9,31 @@ export default function Sidebar() {
 
   const [chats, setChats] = useState([]);
   const [user, setUser] = useState(null);
+  const [models, setModels] = useState([]);
+  const [selectedPromptModel, setSelectedPromptModel] = useState(null);
+  const [modelSearch, setModelSearch] = useState('');
+  const [showModelDropdown, setShowModelDropdown] = useState(false);
 
   useEffect(() => {
     api.get('/user')
-      .then(res => setUser(res.data))
+      .then(res => {
+        setUser(res.data);
+        setSelectedPromptModel(res.data.selectedPromptModel || null);
+      })
       .catch(() => navigate('/login'));
 
     loadChats();
+    loadModels();
   }, []);
 
   const loadChats = () => {
     api.get('/chats').then(res => setChats(res.data));
+  };
+
+  const loadModels = () => {
+    api.get('/admin/models')
+      .then(res => setModels(res.data))
+      .catch(() => setModels([]));
   };
 
   const newChat = () => {
@@ -40,6 +54,18 @@ export default function Sidebar() {
     }
   };
 
+  const handleModelSelect = (model) => {
+    api.post('/user/prompt-model', { modelName: model.name })
+      .then(() => {
+        setSelectedPromptModel(model.name);
+        setShowModelDropdown(false);
+      });
+  };
+
+  const filteredModels = models.filter(m =>
+    m.name.toLowerCase().includes(modelSearch.toLowerCase())
+  );
+
   return (
     <div className="w-72 bg-neutral-900 shadow-xl flex flex-col">
       {/* TOPO */}
@@ -51,6 +77,58 @@ export default function Sidebar() {
         />
         <div className="text-2xl font-extrabold text-white tracking-wide">
           GNØMØ
+        </div>
+      </div>
+
+      {/* MODELOS DE PROMPT */}
+      <div className="px-4">
+        <h3 className="text-xs text-neutral-500 mb-2">
+          Especialistas
+        </h3>
+
+        {/* Dropdown Elegante */}
+        <div className="relative mb-6">
+          <button
+            onClick={() => setShowModelDropdown(!showModelDropdown)}
+            className="w-full px-3 py-2 bg-neutral-800 hover:bg-neutral-700 border border-neutral-700 rounded-lg text-sm text-neutral-300 text-left"
+          >
+            {selectedPromptModel
+              ? selectedPromptModel.replace(/_/g, ' ')
+              : 'Selecione um modelo'}
+          </button>
+
+          {showModelDropdown && (
+            <div className="absolute mt-1 w-full bg-neutral-900 border border-neutral-700 rounded-lg shadow-lg z-50">
+              <input
+                type="text"
+                className="w-full px-3 py-2 bg-neutral-800 border-b border-neutral-700 text-sm text-neutral-300 rounded-t-lg focus:outline-none"
+                placeholder="Buscar modelo..."
+                value={modelSearch}
+                onChange={(e) => setModelSearch(e.target.value)}
+              />
+              <div className="max-h-60 overflow-y-auto">
+                {filteredModels.length === 0 ? (
+                  <div className="px-3 py-2 text-xs text-neutral-600">
+                    Nenhum modelo encontrado.
+                  </div>
+                ) : (
+                  filteredModels.map((m) => (
+                    <div
+                      key={m.name}
+                      onClick={() => handleModelSelect(m)}
+                      className={`px-3 py-2 cursor-pointer text-sm ${
+                        selectedPromptModel === m.name
+                          ? 'bg-neutral-800 text-blue-400'
+                          : 'hover:bg-neutral-800 text-neutral-300'
+                      }`}
+                    >
+                      {m.name.replace(/_/g, ' ')}
+                    </div>
+                  ))
+                )}
+              </div>
+            </div>
+          )}
         </div>
       </div>
 

@@ -2,6 +2,11 @@
   "admin": {
     "password": "admin",
     "role": "admin",
-    "selectedModel": "llama3.2:latest"
+    "selectedModel": "gemma3:1b"
+  },
+  "aluno1": {
+    "password": "12345",
+    "role": "user",
+    "selectedModel": "llama3.1:8b"
   }
 }

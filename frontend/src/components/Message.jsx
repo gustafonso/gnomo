@@ -7,7 +7,7 @@ export default function Message({ role, content }) {
     // Mensagem do usuário com balão arredondado à direita
     return (
       <div className="flex justify-end">
-        <div className="relative p-4 rounded-xl border border-neutral-700 bg-neutral-800 max-w-[70%]">
+        <div className="relative p-2 rounded-xl border border-neutral-900 bg-neutral-800 max-w-[70%]">
           <div className="text-xs text-neutral-400 mb-1">Você</div>
           <MarkdownRenderer content={content} />
         </div>
