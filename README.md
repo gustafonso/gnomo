@@ -1,10 +1,11 @@
 # GNOMO — IA Offline 
 
-GNOMO é um sistema de IA local, totalmente offline, focado em anonimização.
+GNOMO é uma plataforma de IA local, totalmente offline, focado em anonimização.
 Funciona com Docker e integra-se ao Ollama, permitindo escolher e executar modelos de IA localmente.  
 Não utiliza banco de dados — todo o armazenamento é feito em arquivos JSON simples.
 
-O sistema possui suporte para upload de documentos em formato `.md` (Markdown), que são indexados e utilizados para consultas inteligentes pela IA.
+O sistema possui suporte para upload de documentos em formato `.md` (Markdown), que são indexados e utilizados para consultas direcionadas pela IA. E também suporte a alteração do system prompt.
+
 
 ## 1. Pré-requisitos
 
@@ -105,6 +106,8 @@ Login padrão:
 **Usuário:** admin  
 **Senha:** admin
 
+No painel do admin (Acesso no canto inferior esquerdo), podemos criar usuarios, mudar senhas e adicionar prompts personalizados que ficarão registrados para uso.
+
 ---
 
 ## 8. Como parar os containers
@@ -125,13 +128,13 @@ No Linux, é necessário definir a variável `OLLAMA_URL` apontando para o IP lo
 
 ## 10. Modelos recomendados e requisitos
 
-### Modelos mais leves (recomendados para 8GB a 16GB RAM):
+### Modelos mais leves (recomendados para 8GB a 16GB RAM e SEM placa de video):
 - `llama3:8b`
 - `mistral:7b`
 - `phi3:mini`
 - `codellama:7b`
 
-### Modelos mais pesados (mínimo 24GB a 32GB RAM):
+### Modelos mais pesados (Necessário placa de vídeo):
 - `deepseek:67b`
 - `llama3:70b`
 - `dolphin-mixtral`
@@ -148,6 +151,7 @@ https://ollama.com/library
 - Upload de documentos Markdown (.md) para aprendizado e consulta
 - Gerenciamento de usuários
 - Histórico de chats persistente
+- Criação de system prompt
 - Logs completos de ações
 
 ---
@@ -163,5 +167,6 @@ https://ollama.com/library
 
 ## 13. Licença
 
-Este projeto é destinado a uso pessoal, laboratórios e ambientes controlados de testes de segurança.  
-Não deve ser utilizado para atividades não autorizadas.
+Este projeto está licenciado sob os termos da [MIT License](./LICENSE).
+
+Este projeto utiliza o [Ollama](https://ollama.com), licenciado sob MIT.
