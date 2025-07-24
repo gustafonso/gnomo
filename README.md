@@ -116,19 +116,19 @@ Login padrão:
 
 Interação Inicial com a IA:
 
-![Interação Inicial](./images/Interação Inicial.png)
+![Interação Inicial](./images/Interação-Inicial.png)
 
 ---
 
 Prompt Direcionado por Modelo:
 
-![Prompt Direcionado](./images/Prompt Direcionado.png)
+![Prompt Direcionado](./images/Prompt-Direcionado.png)
 
 ---
 
 Alteração de System Prompt:
 
-![Alteração de System Prompt](./images/Alteração de System Prompt.png)
+![Alteração de System Prompt](./images/Alteração-de-System-Prompt.png)
 
 
 *No painel do admin (Acesso no canto inferior esquerdo), podemos criar usuários, mudar senhas e adicionar prompts personalizados que ficarão registrados para uso.
